@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -21,12 +22,14 @@ func run(part2 bool, input string) any {
 	data:= strings.Split(input, "\n")
 
 	sum:=0
-	for i:=1;i<101;i++{
+	for i:=1;i<6;i++{
 		sum+=i
 	}
 	// example only 12 red cubes, 13 green cubes, and 14 blue cubes
 	// part 1 12 red cubes, 13 green cubes, and 14 blue cubes
+	part2ans:=0
 	for i,line := range data{
+		maxr,maxg,maxb := -1,-1,-1
 		// sets := make([][]string,100)	
 		line = line[(strings.Index(line,":"))+1:]
 		sets := strings.Split(line,";")
@@ -43,22 +46,28 @@ func run(part2 bool, input string) any {
 				red:=strings.Index(color,"red")
 				green:=strings.Index(color,"green")
 				blue:=strings.Index(color,"blue")
+
 				// fmt.Printf("red:%d, blue:%d, green:%d\n",red,blue,green)
 				
 				if(red!=-1){
 					red,_=strconv.Atoi(color[:strings.Index(color," ")]) 
+					maxr= max(red,maxr)
 				}
 				if(green!=-1){
 					green,_ = strconv.Atoi(color[:strings.Index(color," ")])
+					maxg = max(green,maxg)
 				}
 				if(blue!=-1){
 					blue,_=strconv.Atoi(color[:strings.Index(color," ")])
+					maxb = max(maxb,blue)
 				}
-				if(red>12||green>13||blue>14){
+				if !part2{
+					if(red>12||green>13||blue>14){
 
-					sum-=(i+1)
-					ok=false
-					break
+						sum-=(i+1)
+						ok=false
+						break
+					}
 				}
 			}
 			if !ok {
@@ -66,10 +75,12 @@ func run(part2 bool, input string) any {
 			}
 			// fmt.Println("set ended")
 		}
+		fmt.Println("red",maxr,"blue",maxb,"green",maxg)
+		part2ans+=(maxr*maxg*maxb)
 	}
 	// when you're ready to do part 2, remove this "not implemented" block
 	if part2 {
-		return "not implemented"
+		return part2ans
 	}
 	// solve part 1 here
 	return sum
