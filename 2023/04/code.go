@@ -21,8 +21,12 @@ func main() {
 func run(part2 bool, input string) any {
 	// when you're ready to do part 2, remove this "not implemented" block
 	data := strings.Split(input, "\n")
+	copy := make([]int,len(data)+1)
+	cntarr  :=make([]int,len(data)+1)
 	sum:=0.0
-	for _,line := range data{
+	part2ans:=0
+	for i,line := range data{
+		i=i+1
 		cnt:=0.0
 		cards := line[(strings.Index(line,":"))+1:]
 		cards = strings.TrimSpace(cards)
@@ -60,19 +64,48 @@ func run(part2 bool, input string) any {
 				cnt++
 				}
 			}
-			
 		}
-		// println(int(cnt))
 		if cnt>0{
 			sum+=math.Pow(2,cnt-1)
 		}
-		// println("sum=",int(sum))
-		// println("-----")
+		cntarr[i]=int(cnt)
+		for j:=i+1;j<=i+int(cnt);j++{
+			// println("j=",j,"cnt=",int(cnt))
+			copy[j]++
+
+		}
+
+		// for j:=i+1;j<=i+int(cnt);j++{
+		// 	// println("j=",j+1,"cnt=",int(cnt))
+		// 	for z:=0;z<copy[j];z++{
+		// 		copy[j]++
+		// 	}
+		// }
+
+		// println()
+		// println("cnt=",int(cnt))
 
 	}
+	for k,num :=range copy{
+		// println("k=",k,"num=",num,"cntarr=",cntarr[k])
+		for z:=k+1;z<=k+cntarr[k];z++{
+			// println("z=",z)
+			copy[z]+=num
+		}
+	}
+	// println("--------after---------")
+	for _,num :=range copy{
+		part2ans+=num
+		// println("k=",k,"num=",num,"cntarr=",cntarr[k])
+	}
+	part2ans+=len(copy)-1
 	if part2 {
-		return "not implemented"
+		return part2ans
 	}
 	// solve part 1 here
 	return sum
 }
+
+// 4, 4, 4
+// 2, 4, 2
+// 2
