@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"math"
 	"strconv"
 	"strings"
 
@@ -50,6 +50,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -70,6 +71,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -90,6 +92,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -109,6 +112,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -128,6 +132,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -147,6 +152,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -166,6 +172,7 @@ func run(part2 bool, input string) any {
 			// seedToSoilLines := strings.Split(line,":")
 			for{
 				i++
+				if i>= len(data){break}
 				currLine:=data[i]
 				if currLine==""{
 					break
@@ -182,11 +189,51 @@ func run(part2 bool, input string) any {
 			}
 		}
 	}
-	
-	fmt.Printf("%v",seedToSoil)
+
+// fmt.Printf("seedToSoil: %v\n",seedToSoil)
+// fmt.Printf("soilToFert: %v\n",soilToFert)
+// fmt.Printf("fertToWater: %v\n",fertToWater)
+// fmt.Printf("waterToLight: %v\n",waterToLight)
+// fmt.Printf("lightToTemp: %v\n",lightToTemp)
+// fmt.Printf("tempToHum: %v\n",tempToHum)
+// fmt.Printf("humToLoc: %v\n",humToLoc)
+	ans:=math.MaxInt32
+	for _,seed := range seeds{
+		// println("SEED: ",seed)
+		value := getValueOrDefault(seedToSoil, seed)
+		// println("seedtosoil",value)
+		value = getValueOrDefault(soilToFert, value)
+		// println("soiltofert",value)
+		value = getValueOrDefault(fertToWater, value)
+		// println("fertToWater",value)
+		value = getValueOrDefault(waterToLight, value)
+		// println("waterToLight",value)
+		value = getValueOrDefault(lightToTemp, value)
+		// println("lightToTemp",value)
+		value = getValueOrDefault(tempToHum, value)
+		// println("tempToHum",value)
+		value = getValueOrDefault(humToLoc, value)
+		// println("humToLoc",value)
+		// println("----------")
+
+		ans = min(ans,value)
+		
+
+	}
+	// num := seeds[0]
+
+	// ans:=humToLoc[tempToHum[lightToTemp[waterToLight[fertToWater[soilToFert[seedToSoil[num]]]]]]]
+	// println("Answer:",ans)
+	// fmt.Printf("%v",seedToSoil)
 	if part2 {
 		return "not implemented"
 	}
 	// solve part 1 here
-	return 42
+	return 35
+}
+func getValueOrDefault(m map[int]int, key int) int {
+	if val, ok := m[key]; ok {
+		return val
+	}
+	return key
 }
