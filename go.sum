@@ -17,6 +17,8 @@ github.com/jpillora/maplock v0.0.0-20160420012925-5c725ac6e22a h1:40K0UjFKjfaXcJ
 github.com/jpillora/maplock v0.0.0-20160420012925-5c725ac6e22a/go.mod h1:bn3xq9G+QDq2j6fczyaTq47L6980t7/NnqCnCK7kqD0=
 github.com/jpillora/puzzler v1.3.0 h1:uJbYyr0RSu2VLTIG9POl38uaQuixNpBb0/a0uoQ842M=
 github.com/jpillora/puzzler v1.3.0/go.mod h1:OQ/o2V9d+0kZhtOwAZ/x3n91i0seYWvMfVLa6M9riUQ=
+github.com/jpillora/puzzler v1.3.3 h1:JerOiPmPd93ZEZqRj80327nFV+fqJlAWq77w1SjIl3g=
+github.com/jpillora/puzzler v1.3.3/go.mod h1:OQ/o2V9d+0kZhtOwAZ/x3n91i0seYWvMfVLa6M9riUQ=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
