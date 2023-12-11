@@ -295,31 +295,51 @@ func run(part2 bool, input string) any {
 	// fmt.Printf("tempToHum: %v\n",tempToHum)
 	// fmt.Printf("humToLoc: %v\n",humToLoc)
 	ans:=math.MaxInt32
-	for _,seed := range seeds{
+	for i:=0;i<len(seeds);i+=2{
+		seed:=seeds[i]
+		low:=seed
+		high:=seed+seeds[i+1]
+		if i==len(seeds)-1{break}
+		for{
+			// println("low=",low,"high=",high)
+			if (low>high){
+				break
+			}
+			seed=(low+high)/2
+			// println(seed)
+			var value  int
+			value = helper(seedToSoil,seed)
+			// println("seedtosoil",value)
+
+			value = helper(soilToFert,value)
+			// println("soilToFert",value)
+
+			value = helper(fertToWater,value)
+			// println("fertToWater",value)
+
+			value = helper(waterToLight,value)
+			// println("waterToLight",value)
+
+			value = helper(lightToTemp,value)
+			// println("lightToTemp",value)
+
+			value = helper(tempToHum,value)
+			// println("tempToHum",value)
+
+			value = helper(humToLoc,value)
+			// println("humToLoc",value)
+
+			// println("seed=",seed)
+			// println("value=",value)
+			if value < ans{
+				high=seed-1
+				ans = min(ans,value)
+			}else if value>ans{
+				low = seed+1
+			}
+		}
 		// println("SEED: ",seed)
-		var value  int
-		value = helper(seedToSoil,seed)
-		// println("seedtosoil",value)
 
-		value = helper(soilToFert,value)
-		// println("soilToFert",value)
-
-		value = helper(fertToWater,value)
-		// println("fertToWater",value)
-
-		value = helper(waterToLight,value)
-		// println("waterToLight",value)
-
-		value = helper(lightToTemp,value)
-		// println("lightToTemp",value)
-
-		value = helper(tempToHum,value)
-		// println("tempToHum",value)
-
-		value = helper(humToLoc,value)
-		// println("humToLoc",value)
-
-		ans = min(ans,value)
 	// println("---------")
 
 		
@@ -330,7 +350,7 @@ func run(part2 bool, input string) any {
 	// println("Answer:",ans)
 	// fmt.Printf("%v",seedToSoil)
 	if part2 {
-		return "not implemented"
+
 	}
 	// solve part 1 here
 	return ans
