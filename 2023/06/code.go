@@ -48,18 +48,29 @@ func run(part2 bool, input string) any {
 
 	for _,time := range timeArr{
 		time = strings.Trim(time," ")
-		// println("time=",time)
 		if time !=""{
 			tempTimeArr = append(tempTimeArr, time)
 		}
 	}
 	timeArr = tempTimeArr
+
+	tempDistStr := ""
+	for _,num := range distanceArr{
+		tempDistStr += num 
+	}
+	distanceArr = []string{tempDistStr}
+
+
+	tempNumStr := ""
+	for _,num := range timeArr{
+		tempNumStr += num 
+	}
+	timeArr = []string{tempNumStr}
 	ans:=1
 	for i,time := range timeArr{	
 		cnt:=0
 
 		// println("time=",time)
-
 		currMaxDist,err:= strconv.Atoi(distanceArr[i])
 		if err == nil{
 			for j:=0;j<currMaxDist;j++{
